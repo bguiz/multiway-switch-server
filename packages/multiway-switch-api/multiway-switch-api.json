@@ -1,0 +1,168 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"title": "mutliwaySwitchApi",
+		"description": "Multiway Switch API",
+		"version": "0.0.0"
+	},
+	"host": "api.bguiz.com",
+	"schemes": [
+		"https"
+	],
+	"basePath": "/",
+	"consumes": [
+		"application/json"
+	],
+	"produces": [
+		"application/json"
+	],
+	"paths": {
+		"/api/multiway-switch/v1/create-light": {
+			"get": {
+				"description": "Create a new light with a multiway switch",
+				"parameters": [
+					{
+						"name": "lightId",
+						"in": "query",
+						"description": "The ID of the light to create",
+						"required": true,
+						"type": "number"
+					},
+					{
+						"name": "numSwitches",
+						"in": "query",
+						"description": "The number of multway switches connected to this light",
+						"required": true,
+						"type": "number"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/LightState"
+						}
+					},
+					"400": {
+						"description": "Invalid input",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				}
+			}
+		},
+		"/api/multiway-switch/v1/light-state": {
+			"get": {
+				"description": "Check the current state of a particular light",
+				"parameters": [
+					{
+						"name": "lightId",
+						"in": "query",
+						"description": "The ID of the light to create",
+						"required": true,
+						"type": "number"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/LightState"
+						}
+					},
+					"400": {
+						"description": "Invalid input",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				}
+			}
+		},
+		"/api/multiway-switch/v1/flip-switch": {
+			"get": {
+				"description": "Flip one of the multiway switches for a particular light",
+				"parameters": [
+					{
+						"name": "lightId",
+						"in": "query",
+						"description": "The ID of the light whose switch you would like to switch",
+						"required": true,
+						"type": "number"
+					},
+					{
+						"name": "switchIndex",
+						"in": "query",
+						"description": "The position index of the switch being flipped for the selected light",
+						"required": true,
+						"type": "number"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/LightState"
+						}
+					},
+					"400": {
+						"description": "Invalid input",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				}
+			}
+		}
+	},
+	"definitions": {
+		"LightState": {
+			"type": "object",
+			"required": [
+				"lightId",
+				"lightState",
+				"switchStates"
+			],
+			"properties": {
+				"lightId": {
+					"type": "number"
+				},
+				"switchStates": {
+					"type": "array",
+					"items": {
+						"type": "string",
+						"enum": [
+							"UP",
+							"DOWN"
+						]
+					}
+				},
+				"lightState": {
+					"type": "string",
+					"enum": [
+						"ON",
+						"OFF"
+					]
+				}
+			}
+		},
+		"ErrorResponse": {
+			"type": "object",
+			"description": "Generic error response\n",
+			"required": [
+				"code"
+			],
+			"properties": {
+				"code": {
+					"type": "number",
+					"description": "A six digit integer where the first 3 digits are the error type\n(same as he HTTP stattus code),\nand the last 3 digits are the error sub-category.\n"
+				},
+				"message": {
+					"type": "string",
+					"description": "A description or reason for the error.\n"
+				}
+			}
+		}
+	}
+}

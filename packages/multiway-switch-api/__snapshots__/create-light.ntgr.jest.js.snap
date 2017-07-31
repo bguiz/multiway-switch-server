@@ -1,0 +1,108 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`[create light] should create a new light with switches 1`] = `
+{
+  "body": {
+    "lightId": 1,
+    "lightState": "OFF",
+    "switchStates": [
+      "UP",
+      "UP"
+    ]
+  },
+  "status": 200
+}
+`;
+
+exports[`[create light] should have persisted newly created light 1`] = `
+{
+  "switchStates": [
+    false,
+    false
+  ]
+}
+`;
+
+exports[`[create light] should not create a new light ID has conflict 1`] = `
+{
+  "body": {
+    "code": 400002,
+    "message": "Light with this ID already exists."
+  },
+  "status": 400
+}
+`;
+
+exports[`[create light] should not create a new light when number of switches is unsupported 1`] = `
+{
+  "body": {
+    "code": 400001,
+    "message": "Only supports 2 switches."
+  },
+  "status": 400
+}
+`;
+
+exports[`[create light] should not create a new light with -2 switches 1`] = `
+{
+  "body": {
+    "code": 400001,
+    "message": "Only supports 2 switches."
+  },
+  "status": 400
+}
+`;
+
+exports[`[create light] should not create a new light with 0 switches 1`] = `
+{
+  "body": {
+    "code": 400001,
+    "message": "Only supports 2 switches."
+  },
+  "status": 400
+}
+`;
+
+exports[`[create light] should not create a new light with 1 switches 1`] = `
+{
+  "body": {
+    "code": 400001,
+    "message": "Only supports 2 switches."
+  },
+  "status": 400
+}
+`;
+
+exports[`[create light] should not create a new light with 2 switches 1`] = `
+{
+  "body": {
+    "lightId": 105,
+    "lightState": "OFF",
+    "switchStates": [
+      "UP",
+      "UP"
+    ]
+  },
+  "status": 200
+}
+`;
+
+exports[`[create light] should not create a new light with 3 switches 1`] = `
+{
+  "body": {
+    "code": 400001,
+    "message": "Only supports 2 switches."
+  },
+  "status": 400
+}
+`;
+
+exports[`[create light] should not create a new light with 10 switches 1`] = `
+{
+  "body": {
+    "code": 400001,
+    "message": "Only supports 2 switches."
+  },
+  "status": 400
+}
+`;
