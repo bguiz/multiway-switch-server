@@ -1,0 +1,24 @@
+{
+  "name": "multiway-switch-server",
+  "version": "0.0.0",
+  "description": "demo nodejs api server",
+  "main": "packages/apis/server.js",
+  "repository": "bguiz/multiway-switch-server",
+  "author": "bguiz",
+  "license": "GPL-3.0",
+  "scripts": {
+    "start": "node packages/apis/run.js",
+    "test": "jest --config jest.config.json"
+  },
+  "devDependencies": {
+    "jasmine-check": "^1.0.0-rc.0",
+    "jest": "^20.0.4"
+  },
+  "dependencies": {
+    "express": "^4.15.3",
+    "jest-object": "^0.0.1",
+    "righto": "^3.0.1",
+    "schwag": "^0.1.2",
+    "supertest": "^3.0.0"
+  }
+}
